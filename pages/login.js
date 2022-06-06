@@ -26,7 +26,7 @@ import { API } from "./api/signin";
 
 const Login = () => {
    const { isLoggedIn, setIsLoggedIn, setUser, user } = useStateContext();
-   const [isLoading, setIsLoading] = useState(false);
+   const [loading, setLoading] = useState(false);
    const [showPassword, setShowPassword] = useState(false);
    const [error, setError] = useState("");
    const router = useRouter();
@@ -51,13 +51,14 @@ const Login = () => {
             .required("Required"),
       }),
       onSubmit: (values) => {
-         setIsLoading(true);
+         setLoading(true);
          API.post("/users/login", values)
             .then(({ data }) => {
                if (data.token) {
                   localStorage.setItem("token", data.token);
                   setUser(data.user);
                   setIsLoggedIn(true);
+                  setLoading(false);
                   router.push("/");
                }
             })
@@ -65,7 +66,6 @@ const Login = () => {
                setError(err.response.data.message);
             });
 
-         setIsLoading(false);
       },
    });
    return (
@@ -122,7 +122,7 @@ const Login = () => {
                      </NextLink>
                   </Stack>
 
-                  <Button type="submit" isLoading={isLoading} colorScheme="purple" width="full">
+                  <Button type="submit" isLoading={loading} colorScheme="purple" width="full">
                      Login
                   </Button>
                </VStack>

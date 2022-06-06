@@ -26,7 +26,7 @@ import { API } from "./api/signin";
 
 const Register = () => {
    const { isLoggedIn, setIsLoggedIn, setUser, user } = useStateContext();
-   const [isLoading, setIsLoading] = useState(false);
+   const [loading, setLoading] = useState(false);
    const router = useRouter();
    const [error, setError] = useState("");
    const [showPassword, setShowPassword] = useState(false);
@@ -47,20 +47,20 @@ const Register = () => {
       }),
       onSubmit: async (values) => {
          console.log(values);
-         setIsLoading(true);
+         setLoading(true);
          API.post("/users/register", values)
             .then(({ data }) => {
                if (data.token) {
                   localStorage.setItem("token", data.token);
                   setUser(data.user);
                   setIsLoggedIn(true);
+                  setLoading(false);
                   router.push("/");
                }
             })
             .catch((err) => {
                setError(err.response.data.message);
             });
-         setIsLoading(false);
       },
    });
    return (
@@ -125,7 +125,7 @@ const Register = () => {
                      <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
                   </FormControl>
 
-                  <Button type="submit" isLoading={isLoading} colorScheme="purple" width="full">
+                  <Button type="submit" isLoading={loading} colorScheme="purple" width="full">
                      Register
                   </Button>
                </VStack>

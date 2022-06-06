@@ -35,13 +35,13 @@ const Register = () => {
             .then(({ data }) => {
                console.log(data);
                if (data) {
+                  setIsLoading(false);
                   setSuccess(data.message)
                }
             })
             .catch((err) => {
                setError(err.response.data.message);
             });
-         setIsLoading(false);
       },
    });
    return (

@@ -26,12 +26,12 @@ const Comment = ({comments, id}) => {
             .then(({data}) => {
                console.log(data);
                comments.push(data.comment);
+               setIsLoading(false);
                formik.resetForm();
             })
             .catch((err) => {
                setError(err.response.data.message);
             });
-         setIsLoading(false);
       },
    });
    return (

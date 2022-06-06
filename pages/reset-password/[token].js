@@ -30,15 +30,15 @@ const ResetPassword = ({ token }) => {
                 .then(({ data }) => {
                     if (data) {
                         setIsSuccess(data.message)
-                        router.push("/login");
                         formik.resetForm();
+                        setIsLoading(false);
+                        router.push("/login");
                     }
                 })
                 .catch((err) => {
                     setError(err.response.data.message);
                 });
 
-            setIsLoading(false);
         },
     });
     return (
