@@ -55,11 +55,22 @@ const SingleArticle = ({ article }) => {
 
 export default SingleArticle;
 
-export const getServerSideProps = async ({ params: { id } }) => {
-   const { data } = await API.get(`/articles/${id}`);
-   return {
-      props: {
-         article: data.article,
-      },
-   };
+export const getStaticPaths = async () => {
+   const { data } = await API.get("/articles");
+   const paths = data.map((article) => ({ params: { id: article._id } }));
+   return { paths, fallback: false };
 };
+
+export const getStaticProps = async ({ params }) => {
+   const { data } = await API.get(`/articles/${params.id}`);
+   return { props: { article: data.article } };
+};
+
+// export const getServerSideProps = async ({ params: { id } }) => {
+//    const { data } = await API.get(`/articles/${id}`);
+//    return {
+//       props: {
+//          article: data.article,
+//       },
+//    };
+// };

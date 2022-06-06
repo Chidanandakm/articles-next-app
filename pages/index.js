@@ -72,5 +72,6 @@ export const getStaticProps = async () => {
          articles: data,
          categories,
       },
+      revalidate: 10,
    };
 };
