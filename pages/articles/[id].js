@@ -1,14 +1,14 @@
-import {Box, Center, Flex, Heading, Text} from "@chakra-ui/react";
+import { Box, Center, Flex, Heading, Text } from "@chakra-ui/react";
 import moment from "moment";
 import Image from "next/image";
 import HTMLReactParser from "html-react-parser";
 
 import DefaultImage from "../../images/house.jpg";
 import Comment from "../../components/Comment";
-import {API} from "../../redux/userSlice";
+import { API } from "../api/signin";
 import Head from "next/head";
 
-const SingleArticle = ({article}) => {
+const SingleArticle = ({ article }) => {
    return (
       <>
          <Head>
@@ -55,8 +55,8 @@ const SingleArticle = ({article}) => {
 
 export default SingleArticle;
 
-export const getServerSideProps = async ({params: {id}}) => {
-   const {data} = await API.get(`/articles/${id}`);
+export const getServerSideProps = async ({ params: { id } }) => {
+   const { data } = await API.get(`/articles/${id}`);
    return {
       props: {
          article: data.article,

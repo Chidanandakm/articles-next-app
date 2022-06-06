@@ -2,8 +2,6 @@ import { ChakraProvider } from "@chakra-ui/react";
 import Router from 'next/router';
 import Layout from "../components/Layout";
 import "../styles/globals.css";
-import { Provider } from "react-redux";
-import { store } from "../redux/store";
 import { StateContext } from "../context/StateContext";
 import NProgress from "nprogress";
 import Head from "next/head";
@@ -25,11 +23,9 @@ function MyApp({ Component, pageProps }) {
          </Head>
          <ChakraProvider>
             <StateContext articles={pageProps}>
-               <Provider store={store}>
-                  <Layout>
-                     <Component {...pageProps} />
-                  </Layout>
-               </Provider>
+               <Layout>
+                  <Component {...pageProps} />
+               </Layout>
             </StateContext>
          </ChakraProvider>
       </>

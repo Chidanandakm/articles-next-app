@@ -20,7 +20,6 @@ import { useRouter } from "next/router";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-// import {API, createUser} from "../redux/userSlice";
 import { useStateContext } from "../context/StateContext";
 import { API } from "./api/signin";
 
@@ -30,7 +29,7 @@ const Register = () => {
    const router = useRouter();
    const [error, setError] = useState("");
    const [showPassword, setShowPassword] = useState(false);
-   console.log(user);
+
    const formik = useFormik({
       initialValues: {
          name: "",

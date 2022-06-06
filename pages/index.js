@@ -1,10 +1,10 @@
-import { Box, Button, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Flex } from "@chakra-ui/react";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import Article from "../components/Article";
 import { useStateContext } from "../context/StateContext";
-import { API } from "../redux/userSlice";
+import { API } from "./api/signin";
 
 export default function Home({ articles, categories }) {
    const { text, filteredArticles, setFilteredArticles } = useStateContext();
@@ -63,7 +63,7 @@ export default function Home({ articles, categories }) {
    );
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
    const { data } = await API.get("/articles");
    const res = await API.get("/category");
    const categories = res.data;
