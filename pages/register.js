@@ -15,6 +15,7 @@ import {
    InputRightElement,
    InputGroup,
    Heading,
+   Center,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
@@ -69,13 +70,13 @@ const Register = () => {
                <Heading fontSize={["3xl", "5xl"]}>Sign Up</Heading>
             </Stack>
          </Stack>
+         {error && (
+            <Center color="red.500" alignContent="center" mb="4">
+               {error}
+            </Center>
+         )}
          <Box bg="white" p={[6]} rounded="md" width={"400px"}>
             <form onSubmit={formik.handleSubmit}>
-               {error && (
-                  <Text color="red.500" alignContent="center">
-                     {error}
-                  </Text>
-               )}
                <VStack spacing={4} align="flex-start">
                   <FormControl isInvalid={formik.touched.name && formik.errors.name}>
                      <FormLabel htmlFor="name">Name</FormLabel>

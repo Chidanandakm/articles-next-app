@@ -16,6 +16,7 @@ import {
    InputRightElement,
    Link,
    Heading,
+   Center,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -74,12 +75,12 @@ const Login = () => {
                <Heading fontSize={["3xl", "4xl"]}>Sign in to your account</Heading>
             </Stack>
          </Stack>
+         {error && (
+            <Center color="red.500" alignContent="center" mb="3">
+               {error}
+            </Center>
+         )}
          <form onSubmit={formik.handleSubmit}>
-            {error && (
-               <Text color="red.500" alignContent="center">
-                  {error}
-               </Text>
-            )}
             <Box bg="white" p={6} rounded="md" width={"400px"}>
                <VStack spacing={4} align="flex-start">
                   <FormControl isInvalid={formik.touched.email && formik.errors.email}>
