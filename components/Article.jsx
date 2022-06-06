@@ -35,7 +35,7 @@ const Article = ({article}) => {
             <Stack mt={6} direction={"row"} spacing={4} align={"center"}>
                <Stack direction={"column"} spacing={0} fontSize={"sm"}>
                   <Text fontWeight={600}>{article?.author}</Text>
-                  <Text color={"gray.500"}>{moment(article?.createdAt).fromNow("DD MM YYYY")}</Text>
+                  <Text color={"gray.500"}>{moment(article?.createdAt).fromNow("DD MM YYYY")} ago</Text>
                </Stack>
             </Stack>
          </Box>
